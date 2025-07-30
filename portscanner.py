@@ -5,23 +5,23 @@ from termcolor import colored
 from concurrent.futures import ThreadPoolExecutor
 import ipaddress
 
-host = input("Inserisci l'indirizzo IP: ")
+host = input("Enter the Ip address: ")
 
 try:
     ipaddress.ip_address(host)
 except ValueError:
-    print("Indirizzo IP non valido.")
+    print("Invalid IP address.")
     exit(1)
 
-start_port = int(input("Porta iniziale: "))
-end_port = int(input("Porta finale: "))
+start_port = int(input("Start port: "))
+end_port = int(input("End port: "))
 
 def scan_port(port):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.settimeout(1)
         try:
             s.connect((host, port))
-            print(colored(f"[+] Porta {port} aperta", "green"))
+            print(colored(f"[+] Porta {port} open", "green"))
         except:
             pass
 
